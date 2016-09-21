@@ -19,7 +19,7 @@ $(document).ready(function() {
               "#E7E9ED",
               "#36A2EB",
   			  "#E04321",
-  			  "#C8C7CB"
+  			  "##014a01"
           ],
           label: 'My dataset' // for legend
       }],
