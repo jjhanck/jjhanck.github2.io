@@ -18,8 +18,8 @@ $(document).ready(function() {
               "#FFCE56",
               "#E7E9ED",
               "#36A2EB",
-  			"#E04321",
-  			"#C8C7CB"
+  			  "#E04321",
+  			  "#C8C7CB"
           ],
           label: 'My dataset' // for legend
       }],
@@ -28,9 +28,9 @@ $(document).ready(function() {
           "SQL",
           "Statistics",
           "Python",
-          "Team Management"
-  		"Platform Management"
-  		"Communication"
+          "Team Management",
+		  "Platform Management",
+  		  "Communication"
       ]
   };
 
