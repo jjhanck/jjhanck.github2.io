@@ -6,7 +6,7 @@ var data2 = {
     datasets: [
         {
             label: "Survey Conducted Before James' Strategic Intiatives",
-            backgroundColor: "rgba(179,181,198,0.2)",
+            backgroundColor: "rgba((1, 149, 123, 1)",
             borderColor: "rgba(179,181,198,1)",
             pointBackgroundColor: "rgba(179,181,198,1)",
             pointBorderColor: "#fff",
