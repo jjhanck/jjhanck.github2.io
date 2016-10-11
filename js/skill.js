@@ -39,7 +39,12 @@ $(document).ready(function() {
   new Chart(ctx, {
       data: data,
       type: 'polarArea'
-      //options: options
+       options: {
+        title: {
+            display: true,
+            text: "James' Skills Matrix"
+        }
+    }
   });
   
 }); 

@@ -32,7 +32,12 @@ var data2 = {
 var myRadarChart = new Chart(ctr, {
     type: 'radar',
     data: data2,
-    //options: options
+     options: {
+        title: {
+            display: true,
+            text: "James' Customer Satisfaction Improvement"
+        }
+    }
 });  
   
 }); 
