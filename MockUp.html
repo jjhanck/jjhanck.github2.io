@@ -17,7 +17,7 @@
         <link rel="icon" href="images/favicon.ico" type="image/x-icon"
         <!-- amCharts javascript code -->
         <script type="text/javascript">
-            AmCharts.makeChart("chartdiv",
+            AmCharts.makeChart("chartdivpie",
                 {
                     "type": "pie",
                     "balloonText": "[[title]]<br><span style='font-size:14px'><b>[[value]]</b> ([[percents]]%)</span>",
@@ -29,7 +29,7 @@
                     "titles": [                        {
                             "id": "Title-1",
                             "size": 15,
-                            "text": "Failure Levels"
+                            "text": "Critical Patch Non-Vulnerabilities"
                         }],
                     "dataProvider": [
                         {
@@ -62,7 +62,7 @@
             );
 
          <!-- amCharts javascript code -->
-            AmCharts.makeChart("chartdiv2",
+            AmCharts.makeChart("chartdivbar",
                 {
                     "type": "serial",
                     "categoryField": "category",
@@ -117,7 +117,7 @@
                         {
                             "id": "Title-1",
                             "size": 15,
-                            "text": "Incident Management"
+                            "text": "Critical Patch Status"
                         }
                     ],
                     "dataProvider": [
@@ -475,7 +475,7 @@
                 }
             );
 
-AmCharts.makeChart("chartdiv3",
+AmCharts.makeChart("chartdivstackedbar",
                 {
                     "type": "serial",
                     "categoryField": "category",
@@ -686,7 +686,7 @@ AmCharts.makeChart("chartdiv3",
                     ]
                 }
             );
-    AmCharts.makeChart("chartdiv4",
+    AmCharts.makeChart("chartdivdonut",
                 {
                     "type": "pie",
                     "angle": 12,
@@ -809,7 +809,7 @@ AmCharts.makeChart("chartdiv3",
                     ]
                 }
             );
-AmCharts.makeChart("chartdiv5",
+AmCharts.makeChart("chartdivline",
                 {
                     "type": "serial",
                     "categoryField": "category",
@@ -2009,6 +2009,386 @@ AmCharts.makeChart("chartdiv6",
                     ]
                 }
             );
+            AmCharts.makeChart("chartdivboxplot",
+                {
+                    "type": "serial",
+                    "categoryField": "date",
+                    "autoMarginOffset": 40,
+                    "marginRight": 60,
+                    "marginTop": 60,
+                    "fontSize": 13,
+                    "theme": "default",
+                    "categoryAxis": {
+                        "parseDates": true
+                    },
+                    "chartCursor": {
+                        "enabled": true
+                    },
+                    "chartScrollbar": {
+                        "enabled": true,
+                        "graph": "g1",
+                        "graphType": "line",
+                        "scrollbarHeight": 30
+                    },
+                    "trendLines": [],
+                    "graphs": [
+                        {
+                            "balloonText": "Open:<b>[[open]]</b><br>Low:<b>[[low]]</b><br>High:<b>[[high]]</b><br>Close:<b>[[close]]</b><br>",
+                            "closeField": "close",
+                            "fillAlphas": 0.9,
+                            "fillColors": "#7f8da9",
+                            "highField": "high",
+                            "id": "g1",
+                            "lineColor": "#7f8da9",
+                            "lowField": "low",
+                            "negativeFillColors": "#db4c3c",
+                            "negativeLineColor": "#db4c3c",
+                            "openField": "open",
+                            "title": "Price:",
+                            "type": "candlestick",
+                            "valueField": "close"
+                        }
+                    ],
+                    "guides": [
+                        {
+                            "id": "Guide-1"
+                        },
+                        {
+                            "id": "Guide-2"
+                        }
+                    ],
+                    "valueAxes": [
+                        {
+                            "id": "ValueAxis-1"
+                        }
+                    ],
+                    "allLabels": [],
+                    "balloon": {},
+                    "titles": [
+                        {
+                            "id": "Seat Delivery",
+                            "size": 15,
+                            "text": "Seat Delivery"
+                        }],
+                    "dataProvider": [
+                        {
+                            "date": "2011-08-01",
+                            "open": "136.65",
+                            "high": "136.96",
+                            "low": "134.15",
+                            "close": "136.49"
+                        },
+                        {
+                            "date": "2011-08-02",
+                            "open": "135.26",
+                            "high": "135.95",
+                            "low": "131.50",
+                            "close": "131.85"
+                        },
+                        {
+                            "date": "2011-08-05",
+                            "open": "132.90",
+                            "high": "135.27",
+                            "low": "128.30",
+                            "close": "135.25"
+                        },
+                        {
+                            "date": "2011-08-06",
+                            "open": "134.94",
+                            "high": "137.24",
+                            "low": "132.63",
+                            "close": "135.03"
+                        },
+                        {
+                            "date": "2011-08-07",
+                            "open": "136.76",
+                            "high": "136.86",
+                            "low": "132.00",
+                            "close": "134.01"
+                        },
+                        {
+                            "date": "2011-08-08",
+                            "open": "131.11",
+                            "high": "133.00",
+                            "low": "125.09",
+                            "close": "126.39"
+                        },
+                        {
+                            "date": "2011-08-09",
+                            "open": "123.12",
+                            "high": "127.75",
+                            "low": "120.30",
+                            "close": "125.00"
+                        },
+                        {
+                            "date": "2011-08-12",
+                            "open": "128.32",
+                            "high": "129.35",
+                            "low": "126.50",
+                            "close": "127.79"
+                        },
+                        {
+                            "date": "2011-08-13",
+                            "open": "128.29",
+                            "high": "128.30",
+                            "low": "123.71",
+                            "close": "124.03"
+                        }
+                    ]
+                }
+            );
+    AmCharts.makeChart("chartdivtruline",
+                {
+                    "type": "serial",
+                    "categoryField": "category",
+                    "startDuration": 1,
+                    "theme": "default",
+                    "categoryAxis": {
+                        "gridPosition": "start"
+                    },
+                    "trendLines": [],
+                    "graphs": [
+                        {
+                            "balloonText": "[[title]] of [[category]]:[[value]]",
+                            "bullet": "round",
+                            "id": "AmGraph-1",
+                            "title": "graph 1",
+                            "valueField": "column-1"
+                        },
+                        {
+                            "balloonText": "[[title]] of [[category]]:[[value]]",
+                            "bullet": "square",
+                            "id": "AmGraph-2",
+                            "title": "graph 2",
+                            "valueField": "column-2"
+                        }
+                    ],
+                    "guides": [],
+                    "valueAxes": [
+                        {
+                            "id": "ValueAxis-1",
+                            "stackType": "regular",
+                            "title": "Axis title"
+                        }
+                    ],
+                    "allLabels": [],
+                    "balloon": {},
+                    "legend": {
+                        "enabled": true,
+                        "useGraphSettings": true
+                    },
+                    "titles": [
+                        {
+                            "id": "Title-1",
+                            "size": 15,
+                            "text": "Refresh"
+                        }
+                    ],
+                    "dataProvider": [
+                        {
+                            "category": "category 1",
+                            "column-1": 8,
+                            "column-2": 5
+                        },
+                        {
+                            "category": "category 2",
+                            "column-1": 6,
+                            "column-2": 7
+                        },
+                        {
+                            "category": "category 3",
+                            "column-1": 2,
+                            "column-2": 3
+                        },
+                        {
+                            "category": "category 4",
+                            "column-1": 1,
+                            "column-2": 3
+                        },
+                        {
+                            "category": "category 5",
+                            "column-1": 2,
+                            "column-2": 1
+                        },
+                        {
+                            "category": "category 6",
+                            "column-1": 3,
+                            "column-2": 2
+                        },
+                        {
+                            "category": "category 7",
+                            "column-1": 6,
+                            "column-2": 8
+                        }
+                    ]
+                }
+            );
+
+    AmCharts.makeChart("chartdivbar2",
+                {
+                    "type": "serial",
+                    "categoryField": "category",
+                    "startDuration": 1,
+                    "categoryAxis": {
+                        "gridPosition": "start"
+                    },
+                    "trendLines": [],
+                    "graphs": [
+                        {
+                            "balloonText": "[[title]] of [[category]]:[[value]]",
+                            "fillAlphas": 1,
+                            "id": "AmGraph-1",
+                            "title": "graph 1",
+                            "type": "column",
+                            "valueField": "column-1"
+                        },
+                        {
+                            "balloonText": "[[title]] of [[category]]:[[value]]",
+                            "fillAlphas": 1,
+                            "id": "AmGraph-2",
+                            "title": "graph 2",
+                            "type": "column",
+                            "valueField": "column-2"
+                        }
+                    ],
+                    "guides": [],
+                    "valueAxes": [
+                        {
+                            "id": "ValueAxis-1",
+                            "stackType": "regular",
+                            "title": "Axis title"
+                        }
+                    ],
+                    "allLabels": [],
+                    "balloon": {},
+                    "legend": {
+                        "enabled": true,
+                        "useGraphSettings": true
+                    },
+                    "titles": [
+                        {
+                            "id": "Title-1",
+                            "size": 15,
+                            "text": "PIV-M"
+                        }
+                    ],
+                    "dataProvider": [
+                        {
+                            "category": "category 1",
+                            "column-1": 8,
+                            "column-2": 5
+                        },
+                        {
+                            "category": "category 2",
+                            "column-1": 6,
+                            "column-2": 7
+                        },
+                        {
+                            "category": "category 3",
+                            "column-1": 2,
+                            "column-2": 3
+                        }
+                    ]
+                }
+            );
+            AmCharts.makeChart("chartdivbar3",
+                {
+                    "type": "serial",
+                    "categoryField": "category",
+                    "startDuration": 1,
+                    "theme": "default",
+                    "categoryAxis": {
+                        "gridPosition": "start"
+                    },
+                    "trendLines": [],
+                    "graphs": [
+                        {
+                            "balloonText": "[[title]] of [[category]]:[[value]]",
+                            "fillAlphas": 1,
+                            "id": "AmGraph-1",
+                            "title": "graph 1",
+                            "type": "column",
+                            "valueField": "column-1"
+                        },
+                        {
+                            "balloonText": "[[title]] of [[category]]:[[value]]",
+                            "fillAlphas": 1,
+                            "id": "AmGraph-2",
+                            "title": "graph 2",
+                            "type": "column",
+                            "valueField": "column-2"
+                        }
+                    ],
+                    "guides": [],
+                    "valueAxes": [
+                        {
+                            "id": "ValueAxis-1",
+                            "stackType": "100%",
+                            "title": "Axis title"
+                        }
+                    ],
+                    "allLabels": [],
+                    "balloon": {},
+                    "legend": {
+                        "enabled": true,
+                        "useGraphSettings": true
+                    },
+                    "titles": [
+                        {
+                            "id": "Title-1",
+                            "size": 15,
+                            "text": "Backup"
+                        }
+                    ],
+                    "dataProvider": [
+                        {
+                            "category": "category 1",
+                            "column-1": 8,
+                            "column-2": 5
+                        },
+                        {
+                            "category": "category 2",
+                            "column-1": 6,
+                            "column-2": 7
+                        },
+                        {
+                            "category": "category 3",
+                            "column-1": 2,
+                            "column-2": 3
+                        },
+                        {
+                            "category": "category 4",
+                            "column-1": "5",
+                            "column-2": "2"
+                        }
+                    ]
+                }
+            );
+        </script>
+    </head>
+    <body>
+        <div id="chartdiv" style="width: 100%; height: 400px; background-color: #FFFFFF;" ></div>
+    </body>
+</html>
+        </script>
+    </head>
+    <body>
+        <div id="chartdiv" style="width: 100%; height: 400px; background-color: #FFFFFF;" ></div>
+    </body>
+</html>
+        </script>
+    </head>
+    <body>
+        <div id="chartdiv" style="width: 100%; height: 400px; background-color: #FFFFFF;" ></div>
+    </body>
+</html>
+
+        </script>
+    </head>
+    <body>
+        <div id="chartdiv" style="width: 100%; height: 400px; background-color: #FFFFFF;" ></div>
+    </body>
+</html>
         </script>
     </head>
     <body>
@@ -2028,12 +2408,12 @@ AmCharts.makeChart("chartdiv6",
             </nav>
 
 <div>
-    <div id="chartdiv" style="width: 33%; height: 400px; float:left; background-color: #FFFFFF;" ></div> 
-    <div id="chartdiv5" style="width: 33%; height: 400px; float:left; background-color: #FFFFFF;" ></div>
-    <div id="chartdiv6" style="width: 33%; height: 400px; float:left; background-color: #FFFFFF;" ></div> 
-    <div id="chartdiv2" style="width: 33%; height: 400px; float:left; background-color: #FFFFFF;" ></div> 
-    <div id="chartdiv3" style="width: 33%; height: 400px; float:left; background-color: #FFFFFF;" ></div>
-    <div id="chartdiv4" style="width: 33%; height: 400px; float:left; background-color: #FFFFFF;" ></div>
+    <div id="chartdivbar" style="width: 33%; height: 400px; float:left; background-color: #FFFFFF;" ></div> 
+    <div id="chartdivpie" style="width: 33%; height: 400px; float:left; background-color: #FFFFFF;" ></div>
+    <div id="chartdivbar2" style="width: 33%; height: 400px; float:left; background-color: #FFFFFF;" ></div> 
+    <div id="chartdivbar3" style="width: 33%; height: 400px; float:left; background-color: #FFFFFF;" ></div> 
+    <div id="chartdivtruline" style="width: 33%; height: 400px; float:left; background-color: #FFFFFF;" ></div>
+    <div id="chartdivboxplot" style="width: 33%; height: 400px; float:left; background-color: #FFFFFF;" ></div>
 </div>
     </body>
 </html>
