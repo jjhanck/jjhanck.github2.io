@@ -1,33 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-
-    <script type="text/javascript" src="js/paper.js"></script>
-    <script type="text/paperscript" canvas="canvas">
-        // Any newly created item will inherit the following styles:
-        project.currentStyle = {
-            strokeColor: 'black',
-            strokeWidth: 5,
-            strokeJoin: 'round',
-            strokeCap: 'round'
-        };
-
-        // The user has to drag the mouse at least 30pt before the mouse drag
-        // event is fired:
-        tool.minDistance = 30;
-
-        var path;
-        function onMouseDown(event) {
-            path = new Path();
-            path.add(event.point);
-        }
-
-        function onMouseDrag(event) {
-            path.arcTo(event.point, true);
-        }
-    </script>
-</head>
-<body class = "canvas">
-	<canvas resize ="true" id="myCanvas" ></canvas>
-</body>
-</html>
+<div class="container">
+  <div id="cloud-intro"></div>
+</div>
