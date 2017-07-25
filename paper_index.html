@@ -140,11 +140,11 @@ function checkBounds(ball) {
     }
 }
 
-function cloudBounds(cloud) { 
-    if (cloud.position.x > view.size.width + cloud.bounds.width/2){
-  		cloud.position.x = 0 - cloud.bounds.width/2;
-    }
-}
+//function cloudBounds(cloud) { 
+    //if (cloud.position.x > view.size.width + cloud.bounds.width/2){
+  //		cloud.position.x = 0 - cloud.bounds.width/2;
+    //}
+//}
 
 function onFrame(event) {
 	pathHeight += (center.y - mousePos.y - pathHeight) / 10;
