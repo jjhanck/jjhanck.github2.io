@@ -32,11 +32,11 @@ background.fillColor = "#99CCFF";
 var cloud = new CompoundPath({
     children: [
         new Path.Circle({
-            center: new Point(120, 40),
+            center: new Point(view.size.width/2, 40),
             radius: 30
         }),
         new Path.Circle({
-            center: new Point(50, 50),
+            center: new Point(view.size.width/2-300, 50),
             radius: 10
         })
     ],
