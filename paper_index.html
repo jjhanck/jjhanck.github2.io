@@ -43,6 +43,14 @@ var cloud = new CompoundPath({
             center: new Point(view.size.width/2-10, 60),
             radius: 30
         }),
+	    new Path.Circle({
+            center: new Point(view.size.width/2-5, 20),
+            radius: 30
+        }),
+	new Path.Circle({
+            center: new Point(view.size.width/2+5, 40),
+            radius: 30
+        }),
         new Path.Circle({
             center: new Point(view.size.width/2-300, 50),
             radius: 10
@@ -55,9 +63,19 @@ var cloud = new CompoundPath({
             center: new Point(view.size.width/2-310, 60),
             radius: 10
         })
+	,
+		    new Path.Circle({
+            center: new Point(view.size.width/2-305, 50),
+            radius: 10
+        })
+	,
+		    new Path.Circle({
+            center: new Point(view.size.width/2-315, 60),
+            radius: 10
+        })
     ],
     fillColor: 'white',
-    selected: true
+    selected: false
 });
 
 //Initialize mountain path;
