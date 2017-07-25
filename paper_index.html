@@ -89,8 +89,6 @@ var cloud = new CompoundPath({
     fillColor: 'white',
     selected: false
 });
-    var cloud2 = cloud.clone;
-    cloud2.poition = new Point(0,100);
     
 //Initialize mountain path;
 var path = new Path();
@@ -185,7 +183,6 @@ function onFrame(event) {
     checkBounds(xpos);
     //cloudbound(cloud);
 	cloud.position.x+= cloudspeed;
-	cloud2.position.x+= cloudspeed;
 }
 
 function onMouseMove(event) {
