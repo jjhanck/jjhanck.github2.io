@@ -43,6 +43,14 @@ var cloud = new CompoundPath({
             center: new Point(view.size.width/2-10, 60),
             radius: 30
         }),
+		    new Path.Circle({
+            center: new Point(view.size.width/2-30, 60),
+            radius: 30
+        }),
+		    new Path.Circle({
+            center: new Point(view.size.width/2+10, 60),
+            radius: 30
+        }),
 	    new Path.Circle({
             center: new Point(view.size.width/2-5, 20),
             radius: 30
@@ -53,25 +61,25 @@ var cloud = new CompoundPath({
         }),
         new Path.Circle({
             center: new Point(view.size.width/2-300, 50),
-            radius: 10
+            radius: 40
         }),
 	    new Path.Circle({
             center: new Point(view.size.width/2-290, 40),
-            radius: 10
+            radius: 40
         }),
 		    new Path.Circle({
             center: new Point(view.size.width/2-310, 60),
-            radius: 10
+            radius: 100
         })
 	,
 		    new Path.Circle({
             center: new Point(view.size.width/2-305, 50),
-            radius: 10
+            radius: 40
         })
 	,
 		    new Path.Circle({
             center: new Point(view.size.width/2-315, 60),
-            radius: 10
+            radius: 40
         })
     ],
     fillColor: 'white',
