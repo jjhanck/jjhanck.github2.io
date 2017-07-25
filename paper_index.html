@@ -22,7 +22,7 @@ var gravity = new Point(.1,0);
 var friction = .01;
 var cloudrad = 30;
 var cloudx = new Point(view.size.width, 40);
-
+var cloudspeed = .1;
 
 
 //Set sky color
@@ -140,6 +140,12 @@ function checkBounds(ball) {
     }
 }
 
+function cloudBounds(cloud) { 
+    if (cloud.position.x > view.size.width + cloud.bounds.width/2){
+  		cloud.position.x = 0 - cloud.bounds.width/2;
+    }
+}
+
 function onFrame(event) {
 	pathHeight += (center.y - mousePos.y - pathHeight) / 10;
 	for (var i = 1; i < points+1; i++) {
@@ -174,7 +180,9 @@ function onFrame(event) {
     }
 
     checkBounds(xpos);
-
+    cloudbound(cloud);
+	cloud.position.x+= cloudspeed;
+	
 }
 
 function onMouseMove(event) {
