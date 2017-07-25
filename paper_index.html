@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- Load the Paper.js library -->
+<script type="text/javascript" src="js/paper.js"></script>
+
+
+<!-- Define inlined PaperScript associate it with myCanvas -->
+<script type="text/paperscript" canvas="myCanvas">
+
+var width, height, center;
+var points = 15;
+var smooth = true;
+
+var mousePos = view.center / 2;
+var pathHeight = mousePos.y;
+
+var spd = new Point(2,0);
+var gravity = new Point(.1,0);
+var friction = .01;
+
+//Set sky color
+var background = new Path.Rectangle({
+	point:[0,0],
+	size: [view.size.width, view.size.height],
+});
+background.fillColor = "#99CCFF";
+
+//Initialize mountain path;
+var path = new Path();
+path.fillColor = '#573B0C';
+path.strokeColor = 'green';
+path.strokeWidth = 10;
+
+//Initialize ball
+var radius = 10;
+var ball = new Path.Circle(new Point(80, 50), radius);
+ball.strokeColor = 'black';
+ball.fillColor = 'black';
+ball.position = view.center;
+
+//initialize ball x position line
+var xpos = new Path.Line({
+	from: [0, 0],
+	to: [0, view.size.height]
+});
+
+//Sun
+sun = new Path.Circle(new Point(50,50), 30);
+sun.strokeColor = 'yellow';
+sun.fillColor = 'yellow';
+
+initializePath();
+
+function initializePath() {
+	center = view.center;
+	width = view.size.width;
+	height = view.size.height / 2;
+	path.segments = [];
+	path.add(view.bounds.bottomLeft);
+	path.add(0, view.center);
+	for (var i = 1; i < points; i++) {
+		var point = new Point(width / points * i, center.y);
+		path.add(point);
+	}
+	path.add(width, height*1.25);
+	path.add(view.bounds.bottomRight);
+	path.fullySelected = false;
+}
+
+function checkBounds(ball) { 
+    if (ball.position.x < radius){
+  		ball.position.x = radius;
+    	spd = spd.abs().clone();
+    } else if(ball.position.x > view.size.width - radius){
+    	ball.position.x = radius;
+    }
+}
+
+function onFrame(event) {
+	pathHeight += (center.y - mousePos.y - pathHeight) / 10;
+	for (var i = 1; i < points+1; i++) {
+		var sinSeed = event.count + (i + i % 10) * 100;
+		var sinHeight = Math.sin(sinSeed / 200) * pathHeight;
+		var yPos = Math.sin(sinSeed / 100) * sinHeight + height;
+		path.segments[i].point.y = yPos;
+	}
+	if (smooth)
+		path.smooth({ type: 'continuous' });
+
+	//determine and set ball position
+	var intersect = path.getIntersections(xpos);
+	ball.position = intersect[0].point.add(new Point(0, -(radius+2)));
+
+	//determine slope of path at ball position and slope effect.
+	var tangentOffset = path.getOffsetOf(intersect[0].point);
+	var tangent = path.getTangentAt(tangentOffset);
+	var slopeEffect = Math.sin(tangent.angleInRadians);
+	
+    //change ball position line (xpos) by speed.
+    xpos.position = xpos.position.add(spd);
+
+    //change speed due to gravity * slope effect
+    spd.x += slopeEffect*gravity.x;
+
+    //change speed due to friction
+    if (spd.x > 0){
+    	spd.x -= friction;
+    } else if (spd.x < 0) {
+    	spd.x += friction
+    }
+
+    checkBounds(xpos);
+
+}
+
+function onMouseMove(event) {
+	mousePos = event.point;
+}
+
+function onMouseDown(event) {
+	smooth = !smooth;
+	if (!smooth) {
+		// If smooth has been turned off, we need to reset
+		// the handles of the path:
+		for (var i = 0, l = path.segments.length; i < l; i++) {
+			var segment = path.segments[i];
+			segment.handleIn = segment.handleOut = null;
+		}
+	}
+}
+
+// Reposition the path whenever the window is resized:
+function onResize(event) {
+	initializePath();
+}
+
+</script>
+
+<style type="text/css">
+html,
+body {
+    margin: 0;
+    overflow: hidden;
+    height: 100%;
+}
+
+/* Scale canvas with resize attribute to full size */
+canvas[resize] {
+    width: 100%;
+    height: 100%;
+}
+</style>
+</head>
+<body class = "canvas">
+	<canvas resize ="true" id="myCanvas" ></canvas>
+</body>
+</html>
