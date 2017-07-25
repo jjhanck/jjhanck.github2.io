@@ -20,6 +20,9 @@ var pathHeight = mousePos.y;
 var spd = new Point(2,0);
 var gravity = new Point(.1,0);
 var friction = .01;
+var cloudrad = 30;
+var cloudx = new Point(view.size.width, 40);
+
 
 
 //Set sky color
@@ -32,54 +35,54 @@ background.fillColor = "#99CCFF";
 var cloud = new CompoundPath({
     children: [
         new Path.Circle({
-            center: new Point(view.size.width/2, 40),
-            radius: 30
+            center: new Point(view.size.width/2, 20),
+            radius: cloudrad
         }),
 	    new Path.Circle({
             center: new Point(view.size.width/2-15, 20),
-            radius: 20
+            radius: cloudrad
         }),
 	    new Path.Circle({
             center: new Point(view.size.width/2-10, 60),
-            radius: 30
+            radius: cloudrad
         }),
 		    new Path.Circle({
             center: new Point(view.size.width/2-30, 60),
-            radius: 30
+            radius: cloudrad
         }),
 		    new Path.Circle({
             center: new Point(view.size.width/2+10, 60),
-            radius: 30
+            radius: cloudrad
         }),
 	    new Path.Circle({
             center: new Point(view.size.width/2-5, 20),
-            radius: 30
+            radius: cloudrad
         }),
 	new Path.Circle({
             center: new Point(view.size.width/2+5, 40),
-            radius: 30
+            radius: cloudrad
         }),
         new Path.Circle({
             center: new Point(view.size.width/2-300, 50),
-            radius: 30
+            radius: cloudrad
         }),
 	    new Path.Circle({
             center: new Point(view.size.width/2-290, 40),
-            radius: 10
+            radius: cloudrad
         }),
 		    new Path.Circle({
-            center: new Point(view.size.width/2-310, 60),
-            radius: 40
-        })
-	,
-		    new Path.Circle({
-            center: new Point(view.size.width/2-305, 50),
-            radius: 30
-        })
-	,
-		    new Path.Circle({
             center: new Point(view.size.width/2-315, 60),
-            radius: 30
+            radius: cloudrad
+        })
+	,
+		    new Path.Circle({
+            center: new Point(view.size.width/2-320, 50),
+            radius: cloudrad
+        })
+	,
+		    new Path.Circle({
+            center: new Point(view.size.width/2-325, 60),
+            radius: cloudrad
         })
     ],
     fillColor: 'white',
