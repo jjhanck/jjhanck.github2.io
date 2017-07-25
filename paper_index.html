@@ -29,6 +29,21 @@ var background = new Path.Rectangle({
 });
 background.fillColor = "#99CCFF";
 
+var cloud = new CompoundPath({
+    children: [
+        new Path.Circle({
+            center: new Point(120, 40),
+            radius: 30
+        }),
+        new Path.Circle({
+            center: new Point(50, 50),
+            radius: 10
+        })
+    ],
+    fillColor: 'black',
+    selected: true
+});
+
 //Initialize mountain path;
 var path = new Path();
 path.fillColor = '#573B0C';
