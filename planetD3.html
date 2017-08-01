@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+body {
+  font: 10px sans-serif;
+}
+
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.dot {
+  fill: yellow;
+  opacity: 0.5;
+}
+
+#dataBox {
+  font: 30px sans-serif;
+  fill: yellow;
+  opacity: 0.5;
+}
+
+</style>
+<body>
+<script src="//d3js.org/d3.v3.min.js"></script>
+<script>
+
+var margin = {top: 20, right: 20, bottom: 30, left: 40},
+    width = 1200 - margin.left - margin.right,
+    height = 700 - margin.top - margin.bottom;
+
+var x = d3.scale.linear()
+    .range([width, 0]);
+
+var y = d3.scale.log()
+    .range([0, height]);
+
+var color = d3.scale.category10();
+
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom");
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left");
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .style("background-color", "darkslategrey")
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+var dataBox = svg.append("g")
+  .attr("id","dataBox");
+
+dataBox.append('rect')
+    .style("stroke", "black")
+    .style("fill", "none")
+    .attr("x", margin.left)
+    .attr("y", margin.top)
+    .attr("width", 400)
+    .attr("height", 200);
+dataBox.append('text')
+    .attr("x", 10 + margin.left)
+    .attr("y", 10 + margin.top)
+  .append('tspan')
+    .attr("id", "planet")
+    .attr("x", 10 + margin.left)
+    .attr("dy", 10 + margin.top)
+    .text("Planet: ")
+  .append('tspan')
+    .attr("id", "mass")
+    .attr("x", 10 + margin.left)
+    .attr("dy", 20 + margin.top)
+    .text("Mass: ")
+  .append('tspan')
+    .attr("id", "temp")
+    .attr("x", 10 + margin.left)
+    .attr("dy", 20 + margin.top)
+    .text("Temp: ")
+  .append('tspan')
+    .attr("id", "year")
+    .attr("x", 10 + margin.left)
+    .attr("dy", 20 + margin.top)
+    .text("Year: ")
+
+d3.csv("assets/data/planet.csv", function(error, data) {
+  if (error) throw error;
+
+  data.forEach(function(d) {
+    d.Earth_Masses = +d.Earth_Masses;
+    d.Temperature_Kelvin = +d.Temperature_Kelvin;
+  });
+
+  console.log(data);
+
+  x.domain([0, d3.max(data, function(d) { return d.Temperature_Kelvin; })]).nice();
+  y.domain(d3.extent(data, function(d) { return d.Earth_Masses; })).nice();
+
+  svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis)
+    .append("text")
+      .attr("class", "label")
+      .attr("x", width)
+      .attr("y", -6)
+      .style("text-anchor", "end")
+      .text("Temperature (Kelvin)");
+
+  svg.append("g")
+      .attr("class", "y axis")
+      .call(yAxis)
+    .append("text")
+      .attr("class", "label")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("Mass (Earths)")
+
+  svg.selectAll(".dot")
+      .data(data)
+    .enter().append("circle")
+      .attr("class", "dot")
+     .attr("r", function(d) { return Math.log(d.Earth_Masses+4); })
+      .attr("cx", function(d) { return x(d.Temperature_Kelvin); })
+      .attr("cy", function(d) { return y(d.Earth_Masses); })
+      .on("mouseover", function(d, i){
+          d3.select(this).style("fill","red").style("stroke", "none")
+            .attr("r", 2*Math.log(d.Earth_Masses+4));
+          d3.select("#planet").text("Planet: "+d.Planet)
+          .append('tspan')
+            .attr("id", "mass")
+            .attr("x", 10 + margin.left)
+            .attr("dy", 20 + margin.top)
+            .text("Mass: "+d.Earth_Masses)
+          .append('tspan')
+            .attr("id", "temp")
+            .attr("x", 10 + margin.left)
+            .attr("dy", 20 + margin.top)
+            .text("Temp: "+d.Temperature_Kelvin)
+          .append('tspan')
+            .attr("id", "year")
+            .attr("x", 10 + margin.left)
+            .attr("dy", 20 + margin.top)
+            .text("Year: "+d.Year);
+        })
+
+      .on("mouseout", function(d, i){
+          d3.select(this).style("fill", "yellow").style("stroke", "none")
+            .attr("r", Math.log(d.Earth_Masses+4));
+          d3.select("#planet").text("Planet: ")
+          .append('tspan')
+            .attr("id", "mass")
+            .attr("x", 10 + margin.left)
+            .attr("dy", 20 + margin.top)
+            .text("Mass: ")
+          .append('tspan')
+            .attr("id", "temp")
+            .attr("x", 10 + margin.left)
+            .attr("dy", 20 + margin.top)
+            .text("Temp: ")
+          .append('tspan')
+            .attr("id", "year")
+            .attr("x", 10 + margin.left)
+            .attr("dy", 20 + margin.top)
+            .text("Year: ");
+        });
+});
+
+</script>
