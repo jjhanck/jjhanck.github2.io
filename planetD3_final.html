@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+body {
+  font: 10px sans-serif;
+}
+
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.dot {
+  opacity: 0.5;
+}
+
+#dataBox {
+  font: 30px sans-serif;
+  fill: LightBlue;
+  opacity: 0.8;
+}
+
+</style>
+<body>
+<script src="//d3js.org/d3.v3.min.js"></script>
+<script src="https://d3js.org/d3-random.v1.min.js"></script>
+<script>
+
+var margin = {top: 20, right: 20, bottom: 30, left: 40},
+    width = 1000 - margin.left - margin.right,
+    height = 1000 - margin.top - margin.bottom;
+
+//x scale with output range
+var x = d3.scale.log()
+    .range([width, 0]);
+
+var x2 = d3.scale.pow()
+	.range([width, 0])
+	.exponent(.5);
+
+//y scale and ouput range
+var y = d3.scale.log()
+    .range([0, height]);
+
+var y2 = d3.scale.pow()
+    .range([height, 0])
+    .exponent(.5);
+
+
+//var color = d3.scale.category10();
+
+//Define x axis
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom");
+
+var xAxis2 = d3.svg.axis()
+    .scale(x2)
+    .orient("bottom");
+
+//Define y axis
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left");
+
+var yAxis2 = d3.svg.axis()
+    .scale(y2)
+    .orient("left");
+
+var tempMin;
+var tempMax;
+var distMax;
+
+//Create SVG element
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .style("background-color", "darkslategrey")
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+var dataBox = svg.append("g")
+  .attr("id","dataBox");
+
+dataBox.append('rect')
+    .style("stroke", "none")
+    .style("fill", "none")
+    .attr("x", margin.left)
+    .attr("y", margin.top)
+    .attr("width", 400)
+    .attr("height", 200);
+dataBox.append('text')
+    .attr("x", 5 + margin.left)
+    .attr("y", 10 + margin.top)
+  .append('tspan')
+    .attr("id", "planet")
+    .attr("x", 5 + margin.left)
+    .attr("dy", 10 + margin.top)
+    .text("Planet: ")
+  .append('tspan')
+    .attr("id", "distance")
+    .attr("x", 5 + margin.left)
+    .attr("dy", 20 + margin.top)
+    .text("Distance: ")
+  .append('tspan')
+    .attr("id", "mass")
+    .attr("x", 5 + margin.left)
+    .attr("dy", 20 + margin.top)
+    .text("Mass: ")
+  .append('tspan')
+    .attr("id", "temp")
+    .attr("x", 5 + margin.left)
+    .attr("dy", 20 + margin.top)
+    .text("Temp: ")
+
+d3.csv("assets/data/planet_final.csv", function(error, data) {
+  if (error) throw error;
+
+  data.forEach(function(d) {
+    d.Earth_Masses = +d.Earth_Masses;
+    d.Temperature_Kelvin = +d.Temperature_Kelvin;
+    d.Distance = +d.Distance;
+    d.Angle = d3.randomUniform(0,2*Math.PI)();
+  });
+
+  console.log(data);
+
+  tempMin = d3.min(data, function(d) {return d.Temperature_Kelvin});
+  tempMax = d3.max(data, function(d) {return d.Temperature_Kelvin});
+  tempMedian = d3.median(data, function(d) {return d.Temperature_Kelvin});
+  distMax = d3.max(data, function(d) {return d.Distance});
+  var color_scale = d3.scale.linear().domain([tempMin,tempMedian, tempMax]).range(['DodgerBlue','Yellow', 'Red']);
+  
+  x.domain(d3.extent(data, function(d) { return d.Temperature_Kelvin; }));
+  y.domain(d3.extent(data, function(d) { return d.Earth_Masses; }));
+
+  x2.domain([-distMax, distMax]).nice();
+  y2.domain([-distMax, distMax]).nice();
+
+
+
+
+  console.log(tempMin, tempMax, distMax);
+
+  svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis)
+    .append("text")
+      .attr("class", "label")
+      .attr("x", width)
+      .attr("y", -6)
+      .style("text-anchor", "end")
+      .text("Temperature (Kelvin)");
+
+  svg.append("g")
+      .attr("class", "y axis")
+      .call(yAxis)
+    .append("text")
+      .attr("class", "label")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("Mass (Earths)")
+  
+
+  svg.selectAll(".dot")
+      .data(data)
+    .enter().append("circle")
+    	.style("fill", function(d) {return color_scale(d.Temperature_Kelvin); }) 
+      .attr("class", "dot")
+     .attr("r", function(d) { return Math.log(d.Earth_Masses+10); })
+      .attr("cx", function(d) { return x(d.Temperature_Kelvin); })
+      .attr("cy", function(d) { return y(d.Earth_Masses); })
+      
+      .on("mouseover", function(d, i){
+          d3.select(this).style("fill","red").style("stroke", "none")
+            .attr("r", 2*Math.log(d.Earth_Masses+4));
+          d3.select("#planet").text("Planet: "+d.Planet)
+          .append('tspan')
+            .attr("id", "distance")
+            .attr("x", 10 + margin.left)
+            .attr("dy", 20 + margin.top)
+            .text("Distance: "+Math.round(d.Distance*10)/10 + " ly")
+          .append('tspan')
+            .attr("id", "mass")
+            .attr("x", 10 + margin.left)
+            .attr("dy", 20 + margin.top)
+            .text("Mass: "+Math.round(d.Earth_Masses*10)/10 + " em")
+          .append('tspan')
+            .attr("id", "temp")
+            .attr("x", 10 + margin.left)
+            .attr("dy", 20 + margin.top)
+            .text("Temp: "+Math.round(d.Temperature_Kelvin*10)/10 + " K");
+        })
+
+      .on("mouseout", function(d, i){
+          d3.select(this).style("fill", function(d) {return color_scale(d.Temperature_Kelvin); })
+          	.style("stroke", "none")
+            .attr("r", Math.log(d.Earth_Masses+4));
+          d3.select("#planet").text("Planet: ")
+          .append('tspan')
+            .attr("id", "distance")
+            .attr("x", 10 + margin.left)
+            .attr("dy", 20 + margin.top)
+            .text("Distance: ")
+          .append('tspan')
+            .attr("id", "mass")
+            .attr("x", 10 + margin.left)
+            .attr("dy", 20 + margin.top)
+            .text("Mass: ")
+          .append('tspan')
+            .attr("id", "temp")
+            .attr("x", 10 + margin.left)
+            .attr("dy", 20 + margin.top)
+            .text("Temp: ");
+        });
+    svg.append('circle')
+  	 .attr('class','c1')
+    .attr('cx', x2(0))
+  	.attr('cy', y2(0))
+  	.attr('r', x2(-100)-x2(0))
+  	.style('stroke','black')
+  	.style('fill', 'none')
+  	.style('opacity', 0);
+  svg.append('circle')
+ 	.attr('class','c2')
+  	.attr('cx', x2(0))
+  	.attr('cy', y2(0))
+  	.attr('r', x2(-1000)-x2(0))
+  	.style('stroke','black')
+  	.style('fill', 'none')
+    .style('opacity', 0);
+  svg.append('circle')
+ 	.attr('class','c3')
+  	.attr('cx', x2(0))
+  	.attr('cy', y2(0))
+  	.attr('r', x2(-5000)-x2(0))
+  	.style('stroke','black')
+  	.style('fill', 'none')
+    .style('opacity', 0);
+  svg.append('text')
+    .attr('class', 't1')
+    .attr('fill', 'black')
+    .attr('opacity', 0)
+    .attr('x', x2(-100)+5)
+    .attr('y', y2(0))
+    .text('100 LY');
+  svg.append('text')
+    .attr('class', 't2')
+    .attr('fill', 'black')
+    .attr('opacity', 0)
+    .attr('x', x2(-1000)+5)
+    .attr('y', y2(0))
+    .text('1000 LY');
+  svg.append('text')
+    .attr('class', 't3')
+    .attr('fill', 'black')
+    .attr('opacity', 0)
+    .attr('x', x2(-5000)+5)
+    .attr('y', y2(0))
+    .text('5000 LY');
+
+   
+    var click = 0;
+	d3.select('svg').on("click", function(d){
+      	  click += 1;
+      	  console.log(distMax);
+      	  if (click%2 == 1){
+
+      		svg.select('.x.axis').transition().duration(500).ease("easeCubic")
+      			.style('opacity',0).call(xAxis2);
+
+      		svg.select('.y.axis').transition().call(yAxis2).duration(500).ease("easeCubic")
+      			.style('opacity',0);
+            
+            svg.selectAll('.dot')
+          		.transition().duration(2000).ease("easeCubic")
+          			.attr("cx", function(d){
+          				return x2(Math.cos(d.Angle)*d.Distance); })
+          			.attr("cy", function(d){
+          				return y2(Math.sin(d.Angle)*d.Distance); });
+          	svg.select('.c1').transition().delay(2100).duration(1000).ease("easeCubic")
+          		.style('opacity',1);
+          	svg.select('.c2').transition().delay(2100).duration(1000).ease("easeCubic")
+          		.style('opacity',1);
+          	svg.select('.c3').transition().delay(2100).duration(1000).ease("easeCubic")
+          		.style('opacity',1);
+            svg.select('.t1').transition().delay(2100).duration(1000).ease("easeCubic")
+              .style('opacity',1);
+            svg.select('.t2').transition().delay(2100).duration(1000).ease("easeCubic")
+              .style('opacity',1);
+            svg.select('.t3').transition().delay(2100).duration(1000).ease("easeCubic")
+              .style('opacity',1);
+
+      	  } else {
+      		svg.select('.x.axis').transition().call(xAxis).duration(2000).ease("easeCubic").style('opacity',1);
+
+      		svg.select('.y.axis').transition().call(yAxis).duration(2000).ease("easeCubic").style('opacity',1);
+            svg.selectAll('.dot')
+          		.transition().duration(2000).ease("easeCubic")
+          			.attr("cx", function(d) { return x(d.Temperature_Kelvin); })
+          			.attr("cy", function(d) { return y(d.Earth_Masses); });
+          	svg.select('.c1').transition().duration(1000).ease("easeCubic")
+          		.style('opacity',0);
+          	svg.select('.c2').transition().duration(1000).ease("easeCubic")
+          		.style('opacity',0);
+          	svg.select('.c3').transition().duration(1000).ease("easeCubic")
+          		.style('opacity',0);
+            svg.select('.t1').transition().duration(1000).ease("easeCubic")
+              .style('opacity',0);
+            svg.select('.t2').transition().duration(1000).ease("easeCubic")
+              .style('opacity',0);
+            svg.select('.t3').transition().duration(1000).ease("easeCubic")
+              .style('opacity',0);
+        }
+       });
+});
+
+
+
+
+
+
+
+</script>
