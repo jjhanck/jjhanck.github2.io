@@ -55,19 +55,27 @@ var y2 = d3.scale.pow()
 
 //Define x axis
 var xAxis = d3.svg.axis()
+    .style('stroke',"white")
+    .style('fill', 'none')
     .scale(x)
     .orient("bottom");
 
 var xAxis2 = d3.svg.axis()
+	.style('stroke',"white")
+  	.style('fill', 'none')
     .scale(x2)
     .orient("bottom");
 
 //Define y axis
 var yAxis = d3.svg.axis()
+	    .style('stroke',"white")
+  	    .style('fill', 'none')
     .scale(y)
     .orient("left");
 
 var yAxis2 = d3.svg.axis()
+	    .style('stroke',"white")
+  	    .style('fill', 'none')
     .scale(y2)
     .orient("left");
 
