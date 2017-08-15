@@ -9,7 +9,7 @@ body {
 
 .axis path,
 .axis line {
-  fill: none;
+  fill: #ffffff;
   stroke: #ffffff;
   shape-rendering: crispEdges;
 }
@@ -225,7 +225,7 @@ d3.csv("assets/data/planet_final.csv", function(error, data) {
     .attr('cx', x2(0))
   	.attr('cy', y2(0))
   	.attr('r', x2(-100)-x2(0))
-  	.style('stroke','black')
+  	.style('stroke',#ffffff)
   	.style('fill', 'none')
   	.style('opacity', 0);
   svg.append('circle')
@@ -233,7 +233,7 @@ d3.csv("assets/data/planet_final.csv", function(error, data) {
   	.attr('cx', x2(0))
   	.attr('cy', y2(0))
   	.attr('r', x2(-1000)-x2(0))
-  	.style('stroke','black')
+  	.style('stroke',#ffffff)
   	.style('fill', 'none')
     .style('opacity', 0);
   svg.append('circle')
@@ -241,26 +241,26 @@ d3.csv("assets/data/planet_final.csv", function(error, data) {
   	.attr('cx', x2(0))
   	.attr('cy', y2(0))
   	.attr('r', x2(-5000)-x2(0))
-  	.style('stroke','black')
+  	.style('stroke',#ffffff)
   	.style('fill', 'none')
     .style('opacity', 0);
   svg.append('text')
     .attr('class', 't1')
-    .attr('fill', 'black')
+    .attr('fill', #ffffff)
     .attr('opacity', 0)
     .attr('x', x2(-100)+5)
     .attr('y', y2(0))
     .text('100 LY');
   svg.append('text')
     .attr('class', 't2')
-    .attr('fill', 'black')
+    .attr('fill', #ffffff)
     .attr('opacity', 0)
     .attr('x', x2(-1000)+5)
     .attr('y', y2(0))
     .text('1000 LY');
   svg.append('text')
     .attr('class', 't3')
-    .attr('fill', 'black')
+    .attr('fill', #ffffff)
     .attr('opacity', 0)
     .attr('x', x2(-5000)+5)
     .attr('y', y2(0))
