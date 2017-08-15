@@ -87,13 +87,15 @@ var dataBox = svg.append("g")
   .attr("id","dataBox");
 
 dataBox.append('rect')
-    .style("stroke", "none")
+    .style("stroke", "white")
     .style("fill", "none")
     .attr("x", margin.left)
     .attr("y", margin.top)
     .attr("width", 400)
     .attr("height", 200);
 dataBox.append('text')
+	.style("stroke", "white")
+	.style("fill", "none")
     .attr("x", 5 + margin.left)
     .attr("y", 10 + margin.top)
   .append('tspan')
