@@ -153,6 +153,7 @@ d3.csv("assets/data/planet_final.csv", function(error, data) {
       .attr("transform", "translate(0," + height + ")")
       .call(xAxis)
     .append("text")
+	.style("fill", "none")
       .attr("class", "label")
       .attr("x", width)
       .attr("y", -6)
@@ -203,7 +204,6 @@ d3.csv("assets/data/planet_final.csv", function(error, data) {
 
       .on("mouseout", function(d, i){
           d3.select(this).style("fill", function(d) {return color_scale(d.Temperature_Kelvin); })
-          	.style("stroke", "none")
             .attr("r", Math.log(d.Earth_Masses+4));
           d3.select("#planet").text("Planet: ")
           .append('tspan')
@@ -211,16 +211,22 @@ d3.csv("assets/data/planet_final.csv", function(error, data) {
             .attr("x", 10 + margin.left)
             .attr("dy", 20 + margin.top)
             .text("Distance: ")
+	    .style('stroke',"white")
+  	    .style('fill', 'none')
           .append('tspan')
             .attr("id", "mass")
             .attr("x", 10 + margin.left)
             .attr("dy", 20 + margin.top)
             .text("Mass: ")
+	    .style('stroke',"white")
+  	    .style('fill', 'none')
           .append('tspan')
             .attr("id", "temp")
             .attr("x", 10 + margin.left)
             .attr("dy", 20 + margin.top)
-            .text("Temp: ");
+            .text("Temp: ")
+	 .style('stroke',"white")
+  	    .style('fill', 'none');
         });
     svg.append('circle')
   	 .attr('class','c1')
