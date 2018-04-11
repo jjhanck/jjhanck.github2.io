@@ -1,65 +1,50 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <style>
-
 body {
   font: 10px sans-serif;
 }
-
-
 .axis path,
 .axis line {
   fill: none;
   stroke: #000;
   shape-rendering: crispEdges;
 }
-
 .dot {
-  fill: yellow;
+  fill: color;
   opacity: 0.5;
 }
-
 #dataBox {
   font: 30px sans-serif;
   fill: yellow;
   opacity: 0.5;
 }
-
 </style>
 <body>
 <script src="//d3js.org/d3.v3.min.js"></script>
 <script>
-
 var margin = {top: 20, right: 20, bottom: 30, left: 40},
     width = 1200 - margin.left - margin.right,
     height = 700 - margin.top - margin.bottom;
-
 var x = d3.scale.linear()
     .range([width, 0]);
-
 var y = d3.scale.log()
     .range([0, height]);
-
 var color = d3.scale.category10();
-
 var xAxis = d3.svg.axis()
     .scale(x)
     .orient("bottom");
-
 var yAxis = d3.svg.axis()
     .scale(y)
     .orient("left");
-
 var svg = d3.select("body").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
     .style("background-color", "darkslategrey")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
 var dataBox = svg.append("g")
   .attr("id","dataBox");
-
 dataBox.append('rect')
     .style("stroke", "black")
     .style("fill", "none")
@@ -90,20 +75,15 @@ dataBox.append('text')
     .attr("x", 10 + margin.left)
     .attr("dy", 20 + margin.top)
     .text("Year: ")
-
 d3.csv("assets/data/planet.csv", function(error, data) {
   if (error) throw error;
-
   data.forEach(function(d) {
     d.Earth_Masses = +d.Earth_Masses;
     d.Temperature_Kelvin = +d.Temperature_Kelvin;
   });
-
   console.log(data);
-
   x.domain([0, d3.max(data, function(d) { return d.Temperature_Kelvin; })]).nice();
   y.domain(d3.extent(data, function(d) { return d.Earth_Masses; })).nice();
-
   svg.append("g")
       .attr("class", "x axis")
       .attr("transform", "translate(0," + height + ")")
@@ -114,7 +94,6 @@ d3.csv("assets/data/planet.csv", function(error, data) {
       .attr("y", -6)
       .style("text-anchor", "end")
       .text("Temperature (Kelvin)");
-
   svg.append("g")
       .attr("class", "y axis")
       .call(yAxis)
@@ -125,7 +104,6 @@ d3.csv("assets/data/planet.csv", function(error, data) {
       .attr("dy", ".71em")
       .style("text-anchor", "end")
       .text("Mass (Earths)")
-
   svg.selectAll(".dot")
       .data(data)
     .enter().append("circle")
@@ -153,7 +131,8 @@ d3.csv("assets/data/planet.csv", function(error, data) {
             .attr("dy", 20 + margin.top)
             .text("Year: "+d.Year);
         })
-
+      var color = d3.scale.linear().domain([Temperature_Kelvin])
+        .range(['#0075B4', '#70B5DC']);
       .on("mouseout", function(d, i){
           d3.select(this).style("fill", "yellow").style("stroke", "none")
             .attr("r", Math.log(d.Earth_Masses+4));
@@ -175,5 +154,4 @@ d3.csv("assets/data/planet.csv", function(error, data) {
             .text("Year: ");
         });
 });
-
 </script>
