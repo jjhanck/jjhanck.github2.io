@@ -1,67 +1,196 @@
-# Auth0 JavaScript Login
+# [Material Dashboard React - Free Material-UI Design Admin](https://creativetimofficial.github.io/material-dashboard-react/)
+[![version][version-badge]][CHANGELOG] [![license][license-badge]][LICENSE]
 
-This sample demonstrates how to add authentication to a JavaScript application with Auth0. The sample makes use of Auth0's hosted login page which provides centralized authentication.
+![alt text](https://s3.amazonaws.com/creativetim_bucket/products/71/original/opt_mdr_thumbnail.jpg "Material Dashboard Free React")
 
-## Getting Started
+Material Dashboard React is a free Material-UI Admin with a fresh, new design inspired by Google's Material Design. We are very excited to introduce our take on the material concepts through an easy to use and beautiful set of components. Material Dashboard React was built over the popular Material-UI framework.
 
-If you haven't already done so, [sign up](https://auth0.com) for your free Auth0 account and create a new client in the [dashboard](https://manage.auth0.com). Find the **domain** and **client ID** from the settings area and add the URL for your application to the **Allowed Callback URLs** box. If you are serving the application with the provided `serve` library, that URL is `http://localhost:3000`.
+Material Dashboard React makes use of light, surface and movement. The general layout resembles sheets of paper following multiple different layers, so that the depth and order is obvious. The navigation stays mainly on the left sidebar and the content is on the right inside the main panel.
 
-Clone the repo or download it from the JavaScript quickstart page in Auth0's documentation.
+Material Dashboard React comes with 5 color filter choices for both the sidebar and the card headers (blue, green, orange, red and purple) and an option to have a background image on the sidebar.
 
-```bash
-cd 01-Login
-npm install
+Material Dashboard React uses a framework built by our friend [Olivier - Material-UI](https://github.com/mui-org/material-ui), who did an amazing job creating the backbone for the material effects, animations, ripples and transitions. Big thanks to his team for the effort and forward thinking they put into it.
+
+Special thanks go to:
++ [React-chartist](https://github.com/fraserxu/react-chartist) for the wonderful charts.
+
+We are very excited to share this dashboard with you and we look forward to hearing your feedback!
+
+You can find the Github Repo here.
+
+## Links:
+
++ [Live Preview](https://creativetimofficial.github.io/material-dashboard-react/)
++ [Material Dashboard HTML](http://demos.creative-tim.com/material-dashboard/examples/dashboard.html)
+
+## Quick start
+
+Quick start options:
+
+- [Download from Github](https://github.com/creativetimofficial/material-dashboard-react/archive/master.zip).
+- [Download from Creative Tim](http://www.creative-tim.com/product/material-dashboard-react).
+- Clone the repo: `git clone https://github.com/creativetimofficial/material-dashboard-react.git`.
+
+## Terminal Commands
+
+1. Install NodeJs from [NodeJs Official Page](https://nodejs.org/en).
+2. Open Terminal
+3. Go to your file project
+4. Run in terminal: ```npm install```
+5. Then: ```npm start```
+6. Navigate to `http://localhost:3000/`
+7. (optional) Run in terminal `npm i -g cross-env`
+
+### What's included
+
+Within the download you'll find the following directories and files:
+
+```
+material-dashboard-react
+.
+├── CHANGELOG.md
+├── LICENSE.md
+├── README.md
+├── documentation
+│   ├── assets
+│   │   ├── css
+│   │   ├── img
+│   │   │   └── faces
+│   │   └── js
+│   └── tutorial-components.html
+├── package.json
+├── public
+│   ├── favicon.ico
+│   ├── index.html
+│   └── manifest.json
+└── src
+    ├── assets
+    │   ├── css
+    │   │   └── material-dashboard-react.css
+    │   ├── img
+    │   │   └── faces
+    │   └── jss
+    │       ├── material-dashboard-react
+    │       │   ├── cardImagesStyles.jsx
+    │       │   ├── checkboxAdnRadioStyle.jsx
+    │       │   ├── components
+    │       │   │   ├── buttonStyle.jsx
+    │       │   │   ├── cardAvatarStyle.jsx
+    │       │   │   ├── cardBodyStyle.jsx
+    │       │   │   ├── cardFooterStyle.jsx
+    │       │   │   ├── cardHeaderStyle.jsx
+    │       │   │   ├── cardIconStyle.jsx
+    │       │   │   ├── cardStyle.jsx
+    │       │   │   ├── customInputStyle.jsx
+    │       │   │   ├── customTabsStyle.jsx
+    │       │   │   ├── footerStyle.jsx
+    │       │   │   ├── headerLinksStyle.jsx
+    │       │   │   ├── headerStyle.jsx
+    │       │   │   ├── sidebarStyle.jsx
+    │       │   │   ├── snackbarContentStyle.jsx
+    │       │   │   ├── tableStyle.jsx
+    │       │   │   ├── tasksStyle.jsx
+    │       │   │   └── typographyStyle.jsx
+    │       │   ├── dropdownStyle.jsx
+    │       │   ├── layouts
+    │       │   │   └── dashboardStyle.jsx
+    │       │   ├── tooltipStyle.jsx
+    │       │   └── views
+    │       │       ├── dashboardStyle.jsx
+    │       │       └── iconsStyle.jsx
+    │       └── material-dashboard-react.jsx
+    ├── components
+    │   ├── Card
+    │   │   ├── Card.jsx
+    │   │   ├── CardAvatar.jsx
+    │   │   ├── CardBody.jsx
+    │   │   ├── CardFooter.jsx
+    │   │   ├── CardHeader.jsx
+    │   │   └── CardIcon.jsx
+    │   ├── CustomButtons
+    │   │   └── Button.jsx
+    │   ├── CustomInput
+    │   │   └── CustomInput.jsx
+    │   ├── CustomTabs
+    │   │   └── CustomTabs.jsx
+    │   ├── Footer
+    │   │   └── Footer.jsx
+    │   ├── Grid
+    │   │   └── GridItem.jsx
+    │   ├── Header
+    │   │   ├── Header.jsx
+    │   │   └── HeaderLinks.jsx
+    │   ├── Sidebar
+    │   │   └── Sidebar.jsx
+    │   ├── Snackbar
+    │   │   ├── Snackbar.jsx
+    │   │   └── SnackbarContent.jsx
+    │   ├── Table
+    │   │   └── Table.jsx
+    │   ├── Tasks
+    │   │   └── Tasks.jsx
+    │   └── Typography
+    │       ├── Danger.jsx
+    │       ├── Info.jsx
+    │       ├── Muted.jsx
+    │       ├── Primary.jsx
+    │       ├── Quote.jsx
+    │       ├── Success.jsx
+    │       └── Warning.jsx
+    ├── index.js
+    ├── layouts
+    │   └── Dashboard
+    │       └── Dashboard.jsx
+    ├── logo.svg
+    ├── routes
+    │   ├── dashboard.jsx
+    │   └── index.jsx
+    ├── variables
+    │   ├── charts.jsx
+    │   └── general.jsx
+    └── views
+        ├── Dashboard
+        │   └── Dashboard.jsx
+        ├── Icons
+        │   └── Icons.jsx
+        ├── Maps
+        │   └── Maps.jsx
+        ├── Notifications
+        │   └── Notifications.jsx
+        ├── TableList
+        │   └── TableList.jsx
+        ├── Typography
+        │   └── Typography.jsx
+        ├── UpgradeToPro
+        │   └── UpgradeToPro.jsx
+        └── UserProfile
+            └── UserProfile.jsx
 ```
 
-## Set the Client ID and Domain
+## Useful Links
 
-If you download the sample from the quickstart page, it will come pre-populated with the **client ID** and **domain** for your application. If you clone the repo directly from Github, rename the `auth0-variables.js.example` file to `auth0-variables.js` and provide the **client ID** and **domain** there.
+More products from Creative Tim: <https://www.creative-tim.com/bootstrap-themes>
 
-## Run the Application
+Tutorials: <https://www.youtube.com/channel/UCVyTG4sCw-rOvB9oHkzZD1w>
 
-The `serve` module provided with this sample can be run with the `start` command.
+Freebies: <https://www.creative-tim.com/products>
 
-```bash
-npm start
-```
+Affiliate Program (earn money): <https://www.creative-tim.com/affiliates/new>
 
-The application will be served at `http://localhost:3000`.
+Social Media:
 
-## Run the Application With Docker
+Twitter: <https://twitter.com/CreativeTim>
 
-In order to run the example with docker you need to have `docker` installed.
+Facebook: <https://www.facebook.com/CreativeTim>
 
-You also need to set the environment variables as explained [previously](#set-the-client-id-and-domain).
+Dribbble: <https://dribbble.com/creativetim>
 
-Execute in command line `sh exec.sh` to run the Docker in Linux, or `.\exec.ps1` to run the Docker in Windows.
+Google+: <https://plus.google.com/+CreativetimPage>
 
-## What is Auth0?
+Instagram: <https://instagram.com/creativetimofficial>
 
-Auth0 helps you to:
+[CHANGELOG]: ./CHANGELOG.md
 
-* Add authentication with [multiple authentication sources](https://docs.auth0.com/identityproviders), either social like **Google, Facebook, Microsoft Account, LinkedIn, GitHub, Twitter, Box, Salesforce, amont others**, or enterprise identity systems like **Windows Azure AD, Google Apps, Active Directory, ADFS or any SAML Identity Provider**.
-* Add authentication through more traditional **[username/password databases](https://docs.auth0.com/mysql-connection-tutorial)**.
-* Add support for **[linking different user accounts](https://docs.auth0.com/link-accounts)** with the same user.
-* Support for generating signed [Json Web Tokens](https://docs.auth0.com/jwt) to call your APIs and **flow the user identity** securely.
-* Analytics of how, when and where users are logging in.
-* Pull data from other sources and add it to the user profile, through [JavaScript rules](https://docs.auth0.com/rules).
-
-## Create a free Auth0 account
-
-1. Go to [Auth0](https://auth0.com/signup) and click Sign Up.
-2. Use Google, GitHub or Microsoft Account to login.
-
-## Issue Reporting
-
-If you have found a bug or if you have a feature request, please report them at this repository issues section. Please do not report security vulnerabilities on the public GitHub issue tracker. The [Responsible Disclosure Program](https://auth0.com/whitehat) details the procedure for disclosing security issues.
-
-## Author
-
-[Auth0](https://auth0.com)
-
-## License
-
-This project is licensed under the MIT license. See the [LICENSE](LICENSE.txt) file for more info.
-
-
-
+[LICENSE]: ./LICENSE.md
+[version-badge]: https://img.shields.io/badge/version-1.3.0-blue.svg
+[license-badge]: https://img.shields.io/badge/license-MIT-blue.svg
